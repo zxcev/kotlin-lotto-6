@@ -1,11 +1,12 @@
 package lotto.domain.lotto
 
+import lotto.domain.lotto.validator.LottoValidator
 import lotto.domain.money.Money
 
 open class Lotto(val numbers: List<Int>) {
 
     init {
-        require(numbers.size == NUMBERS_LENGTH)
+        LottoValidator.validateDuplication(numbers)
     }
 
     fun contains(number: Int) =

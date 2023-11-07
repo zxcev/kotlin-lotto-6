@@ -9,11 +9,11 @@ import lotto.parser.InputParser
 class InputView {
     fun inputCreateWalletDto(): CreateWalletDto {
         println("구입금액을 입력해 주세요.")
-        try {
-            return CreateWalletDto.from(readLine())
-        } catch (e: Exception) {
+        return try {
+            CreateWalletDto.from(readLine())
+        } catch (e: IllegalArgumentException) {
             printErr(e.message!!)
-            return inputCreateWalletDto()
+            inputCreateWalletDto()
         }
     }
 
