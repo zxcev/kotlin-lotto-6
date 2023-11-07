@@ -13,7 +13,9 @@ class CreateWalletDto(val amount: Long) {
     companion object {
         fun from(input: String): CreateWalletDto {
             InputValidator.validateNumericInput(input)
-            return CreateWalletDto(input.toLong())
+            val amount = input.toLong()
+            InputValidator.validateAmountUnit(amount)
+            return CreateWalletDto(amount)
         }
     }
 

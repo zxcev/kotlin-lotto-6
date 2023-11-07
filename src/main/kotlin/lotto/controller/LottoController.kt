@@ -21,6 +21,8 @@ class LottoController(
     }
 
     private fun drawLottos() {
-
+        val inputDto = inputView.inputCreateWinningLottoDto()
+        val drawLottos = lottoService.drawLottos(inputDto)
+        outputView.printLottosDrawStatistic(drawLottos)
     }
 }

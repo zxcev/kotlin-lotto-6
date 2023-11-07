@@ -2,12 +2,23 @@ package lotto.domain.lotto
 
 import lotto.domain.money.Money
 
-class Lotto(val numbers: List<Int>) {
-    fun clone() = Lotto(numbers.map { it })
+open class Lotto(val numbers: List<Int>) {
 
     init {
         require(numbers.size == NUMBERS_LENGTH)
     }
+
+    fun contains(number: Int) =
+        numbers.contains(number)
+
+    fun countMathcedNumbers(numbers: List<Int>) =
+        this.numbers.count { numbers.contains(it) }
+
+    fun clone() = Lotto(
+        numbers
+            .sorted()
+            .map { it },
+    )
 
     companion object {
         const val MIN_NUMBER = 1
